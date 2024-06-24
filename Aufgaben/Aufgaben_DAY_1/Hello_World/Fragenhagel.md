@@ -23,8 +23,8 @@
 
 ## Was ist das JDK ?
     - ist ein Softwarepaket
-    - enthält den Java-Compiler **javac** --> übersetzt den Quellcode in Bytecode
-    - enthält die Java-Laufzeitumgebung **JRE** --> ist für die Ausführung von Java-Anwendungen erforderlich
+    - enthält den Java-Compiler (javac) --> übersetzt den Quellcode in Bytecode
+    - enthält die Java-Laufzeitumgebung (JRE) --> ist für die Ausführung von Java-Anwendungen erforderlich
     - enthält verschiedene Entwicklertools wie Debugger, verschiedene Bibliotheken, etc
 
 ## Wie würdest du einem Nicht-ITler ein Terminal erklären ?
