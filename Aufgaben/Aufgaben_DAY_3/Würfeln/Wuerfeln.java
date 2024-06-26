@@ -2,21 +2,34 @@ public class Wuerfeln {
 
     public static void main(String[] args) {
 
-        int i = 1;
-        boolean isSix = false;
+        // Initialisierung des Zählers für die Anzahl der Würfe
+        int numberOfThrows = 1;
 
-        while (!isSix) {
-            double randomNumber = (Math.random() * 6) + 1;
-            int number = (int) Math.round(randomNumber * 10) / 10;
-            isSix = number == 6;
-            if (i == 1 && number == 6) {
-                System.out.println("Glückwunsch: Hast du ein Glück 6 ");
-            } else if (number == 6) {
-                System.out.println(number + " Glückwusch");
+        // Boolean-Flag, um zu überprüfen, ob eine 6 gewürfelt wurde
+        boolean foundSix = false;
+
+        // Solange keine 6 gewürfelt wurde, weiter würfeln
+        while (!foundSix) {
+            // Generiere eine Zufallszahl zwischen 1 und 6 (inklusive)
+            double randomDouble = Math.random() * 6 + 1;
+
+            // Runde die Zufallszahl auf die nächste ganze Zahl und speichere sie
+            int diceRoll = (int) Math.round(randomDouble);
+
+            // Überprüfe, ob eine 6 gewürfelt wurde
+            foundSix = diceRoll == 6;
+
+            // Ausgabe je nach Wurfergebnis
+            if (numberOfThrows == 1 && foundSix) {
+                System.out.println("Erster Wurf und eine 6! Glückwunsch!");
+            } else if (foundSix) {
+                System.out.println(diceRoll + " - Glückwunsch, du hast eine 6 gewürfelt!");
             } else {
-                System.out.println(number);
+                System.out.println(diceRoll);
             }
-            i++;
+
+            // Erhöhe die Anzahl der Würfe für die nächste Iteration
+            numberOfThrows++;
         }
 
     }
