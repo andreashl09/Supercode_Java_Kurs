@@ -1,9 +1,9 @@
 public class Diamont {
     /*
-     Schreibe ein Programm, welches Diamanten in Form von Sternchen (*) in der Konsole ausgibt. 
-     Die Größe der Diamanten soll der Benutzer beim Programmaufruf mitgeben.
+     * Schreibe ein Programm, welches Diamanten in Form von Sternchen (*) in der
+     * Konsole ausgibt.
+     * Die Größe der Diamanten soll der Benutzer beim Programmaufruf mitgeben.
      */
-
 
     public static void main(String[] args) {
         int height = Integer.parseInt(args[0]); // Liest die Höhe des Diamanten
@@ -12,6 +12,9 @@ public class Diamont {
 
         if (!isHeightOddNumber) {
             height += 1; // Macht die Höhe ungerade, wenn sie gerade ist
+            System.out.println(
+                    "Du hast eine gerade Zahl eingeben. \nDaraus kann kein Diamand gedruckt werden. \nDeine Höhe wurde auf "
+                            + height + " erhöht!");
         }
 
         int spaces = (height - 1) / 2; // Berechnet die Anfangsanzahl der Leerzeichen
