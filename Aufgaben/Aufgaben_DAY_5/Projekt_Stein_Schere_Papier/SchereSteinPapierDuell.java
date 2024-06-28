@@ -7,7 +7,7 @@ public class SchereSteinPapierDuell {
 
         while (true) {
             System.out.println("Wähle: 0 = Schere, 1 = Stein, 2 = Papier, 3 = Beenden");
-            int userInput = userInput(); // User Eingabe 
+            int userInput = userInput(); // User Eingabe
             int computerInt = computerRandomInt(); // Randomzahl wird erzeugt
 
             if (intIsInRange(userInput)) {
@@ -18,6 +18,7 @@ public class SchereSteinPapierDuell {
                 System.out.println("Deine Wahl: " + stonePaperScissorSelect(userInput));
                 System.out.println("Wahl des Computers: " + stonePaperScissorSelect(computerInt));
                 System.out.println(andTheWinnerIs(userInput, computerInt));
+                System.out.print("\n");
             } else {
                 System.err.println("Ungültige Eingbe. Bitte nochmal.");
                 continue;
@@ -49,14 +50,20 @@ public class SchereSteinPapierDuell {
 
     public static String stonePaperScissorSelect(int choiseInt) {
         String theChoiseIs;
-        if (choiseInt == 0) {
-            theChoiseIs = "Schere";
-        } else if (choiseInt == 1) {
-            theChoiseIs = "Stein";
-        } else if (choiseInt == 2) {
-            theChoiseIs = "Papier";
-        } else {
-            theChoiseIs = "Beenden";
+        
+        switch (choiseInt) {
+            case 0:
+                theChoiseIs = "Schere";
+                break;
+            case 1:
+                theChoiseIs = "Stein";
+                break;
+            case 2:
+                theChoiseIs = "Papier";
+                break;
+            default:
+                theChoiseIs = "Unknow";
+                break;
         }
 
         return theChoiseIs;
@@ -67,7 +74,7 @@ public class SchereSteinPapierDuell {
         int user = 1;
         int computer = 2;
         int undecided = 3;
-        int winnerIs = 0;
+        int winnerIs;
 
         // scissor = 0;
         // stone = 1;
@@ -75,40 +82,31 @@ public class SchereSteinPapierDuell {
         // sum: scissor + stone = 1, scissor + paper = 2; stone + paper = 3
 
         if (userInt != computertInt) {
-            if (sum == 1) {
-                // stone gewinnt
-                if (userInt == 0) {
-                    winnerIs = user;
-                } else {
-                    winnerIs = computer;
-                }
-            } else if (sum == 2) {
-                // scissor gewinnt
-                if (userInt == 0) {
-                    winnerIs = user;
-                } else {
-                    winnerIs = computer;
-                }
-            } else if (sum == 3) {
-                // sum = 3 --> stein gewinnt
-                if (userInt == 2) {
-                    winnerIs = user;
-                } else {
-                    winnerIs = computer;
-                }
+            if ((sum == 1 && userInt == 0) || (sum == 2 && userInt == 1) || (sum == 3 && userInt == 2)) {
+                winnerIs = user;
+            } else {
+                winnerIs = computer;
             }
         } else {
             winnerIs = undecided;
         }
 
-        // Gewinner ausgabe
+        // Gewinner Ausgabe
         String winnerText;
-        if (winnerIs == 1) {
-            winnerText = "Du hast gewonnen!";
-        } else if (winnerIs == 2) {
-            winnerText = "Der Computer hat gewonnen!";
-        } else {
-            winnerText = "Unentschieden!";
+        switch (winnerIs) {
+            case 1:
+                winnerText = "Du hast gewonnen!";
+                break;
+            case 2:
+                winnerText = "Der Computer hat gewonnen!";
+                break;
+            case 3:
+                winnerText = "Unentschieden!";
+                break;
+
+            default:
+                winnerText = "Fehler";
+                break;
         }
         return winnerText;
     }
