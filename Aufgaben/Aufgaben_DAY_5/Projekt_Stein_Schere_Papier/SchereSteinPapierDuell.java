@@ -46,18 +46,18 @@ public class SchereSteinPapierDuell {
     }
 
     public static String stonePaperScissorSelect(int choiseInt) {
-        String[] choiseStrings = {"Schere", "Stein", "Papier"};
+        String[] choiseStrings = { "Schere", "Stein", "Papier" };
         return choiseStrings[choiseInt];
     }
 
     public static String andTheWinnerIs(int userInt, int computertInt) {
-        int sum = userInt + computertInt;
         String winnerText;
         if (userInt != computertInt) {
-            if ((sum == 1 && userInt == 0) || (sum == 2 && userInt == 1) || (sum == 3 && userInt == 2)) {
-                winnerText = "Du hast gewonnen!";
-            } else {
+            if ((computertInt == 1 && userInt == 0) || (computertInt == 2 && userInt == 1)
+                    || (computertInt == 3 && userInt == 2)) {
                 winnerText = "Der Computer hat gewonnen!";
+            } else {
+                winnerText = "Du hast gewonnen!";
             }
         } else {
             winnerText = "Unentschieden!";
