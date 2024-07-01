@@ -1,29 +1,52 @@
 import java.util.Scanner;
 
 public class SchereSteinPapierDuell {
+    final static int SCHERE = 0;
+    final static int STEIN = 1;
+    final static int PAPIER = 2;
+    final static int BEENDEN = 3;
+
+    final static int USER = 1;
+    final static int COMPUTER = -1;
+    final static int DRAWN = 0;
+
+    public static int userScore = 0;
+    public static int computerScore = 0;
+    public static int counterMoves = 0;
+    public static int bonusPointUser = 0;
+    public static int bonusPointComputer = 0;
 
     public static void main(String[] args) {
+        ClearConsole();
         // System.out.println(andTheWinnerIs(1, 2));
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("STEIN SCHERE PAPIER DUELL \n");
         while (true) {
             System.out.println("Wähle: 0 = Schere, 1 = Stein, 2 = Papier, 3 = Beenden");
             int userInput = userInput(scanner); // User Eingabe
             int computerInt = computerRandomInt();
 
-            if (intIsInRange(userInput)) {
-                if (userInput == 3) {
-                    System.out.println("Das Programm wird beendet!");
-                    break;
-                }
-                System.out.println("Deine Wahl: " + stonePaperScissorSelect(userInput));
-                System.out.println("Wahl des Computers: " + stonePaperScissorSelect(computerInt));
-                System.out.println(andTheWinnerIs(userInput, computerInt));
-                System.out.print("\n");
-            } else {
+            if (!intIsInRange(userInput)) {
                 System.err.println("Ungültige Eingbe. Bitte nochmal.");
                 continue;
             }
+
+            if (userInput == 3) {
+                if (counterMoves > 0) {
+                    System.out.println(scoreBoard());
+                }
+                System.out.println("Das Programm wird beendet!");
+                break;
+            }
+
+            ClearConsole();
+            System.out.println("Deine Wahl: " + stonePaperScissorSelect(userInput));
+            System.out.println("Wahl des Computers: " + stonePaperScissorSelect(computerInt));
+            countScores((determineTheStatus(userInput, computerInt)));
+            checkForBonusPoint();
+            System.out.println(scoreBoard());
+            counterMoves++;
         }
 
         scanner.close();
@@ -31,15 +54,11 @@ public class SchereSteinPapierDuell {
 
     public static int userInput(Scanner scanner) {
         int userInputInt = scanner.nextInt();
-        userInputInt = Math.abs(userInputInt);
         return userInputInt;
     }
 
     public static boolean intIsInRange(int userInt) {
-        if (userInt >= 0 && userInt <= 3) {
-            return true;
-        }
-        return false;
+        return userInt >= 0 && userInt <= 3;
     }
 
     public static int computerRandomInt() {
@@ -52,19 +71,77 @@ public class SchereSteinPapierDuell {
         return choiseStrings[choiseInt];
     }
 
-    public static String andTheWinnerIs(int userInt, int computertInt) {
-        String winnerText;
-        if (userInt != computertInt) {
-            if ((computertInt == 1 && userInt == 0) || (computertInt == 2 && userInt == 1)
-                    || (computertInt == 3 && userInt == 2)) {
-                winnerText = "Der Computer hat gewonnen!";
-            } else {
-                winnerText = "Du hast gewonnen!";
-            }
+    public static int determineTheStatus(int userInt, int computertInt) {
+        if (userInt == computertInt) {
+            return DRAWN;
+
+        } else if ((computertInt == STEIN && userInt == SCHERE) ||
+                (computertInt == PAPIER && userInt == STEIN) ||
+                (computertInt == SCHERE && userInt == PAPIER)) {
+            return COMPUTER;
         } else {
-            winnerText = "Unentschieden!";
+            return USER;
         }
-        return winnerText;
+    }
+
+    public static void countScores(int status) {
+        if (status == USER) {
+            userScore++;
+            bonusPointComputer = 0;
+            bonusPointUser++;
+            System.out.println("Du hast gewonnen!\n");
+            return;
+        } else if (status == COMPUTER) {
+            computerScore++;
+            bonusPointUser = 0;
+            bonusPointComputer++;
+            System.out.println("Leider hat der Computer gewonnen!\n");
+            return;
+        }
+        System.out.println("Unentschieden!\n");
+    }
+
+    public static void checkForBonusPoint() {
+        if (bonusPointUser < 3 && bonusPointUser > 0) {
+            System.out.println(cheeringSlogan() + "\n");
+            return;
+        }
+
+        if (bonusPointUser == 3) {
+            System.out.println("Gewinnersträhne: Dreimal in Folge gewonnen! Du erhälst einen Bonuspunkt!");
+            System.out.print("\n");
+            userScore++;
+        } else if (bonusPointComputer == 3) {
+            System.out.println("Leider bekommt der Computer einen Bonuspunkt!");
+            System.out.print("\n");
+            computerScore++;
+        }
+    }
+
+    public static String cheeringSlogan() {
+        String[] cheeringStrings = {
+                "Du schaffst das, gib alles!",
+                "Zeig, was in dir steckt!",
+                "Weiter so, du bist klasse!",
+                "Glaub an dich, du rockst das!",
+                "Keiner kann dich stoppen!",
+                "Hol dir den Sieg, du bist stark!",
+                "Nur noch ein bisschen, du packst das!",
+                "Deine Zeit ist jetzt, gib Gas!",
+                "Du bist unser Champion!",
+                "Zeig ihnen, wie es gemacht wird!"
+        };
+        return cheeringStrings[(int) (Math.random() * 10)].toUpperCase();
+    }
+
+    public static void ClearConsole() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    public static String scoreBoard() {
+        return "Aktueller Punktestand - User: " + userScore
+                + " Computer: " + computerScore + " Spiele: " + counterMoves;
     }
 
 }
