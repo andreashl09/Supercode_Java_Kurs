@@ -4,11 +4,12 @@ public class SchereSteinPapierDuell {
 
     public static void main(String[] args) {
         // System.out.println(andTheWinnerIs(1, 2));
+        Scanner scanner = new Scanner(System.in);
 
         while (true) {
             System.out.println("Wähle: 0 = Schere, 1 = Stein, 2 = Papier, 3 = Beenden");
-            int userInput = userInput(); // User Eingabe
-            int computerInt = computerRandomInt(); // Randomzahl wird erzeugt
+            int userInput = userInput(scanner); // User Eingabe
+            int computerInt = computerRandomInt();
 
             if (intIsInRange(userInput)) {
                 if (userInput == 3) {
@@ -24,10 +25,11 @@ public class SchereSteinPapierDuell {
                 continue;
             }
         }
+
+        scanner.close();
     }
 
-    public static int userInput() {
-        Scanner scanner = new Scanner(System.in);
+    public static int userInput(Scanner scanner) {
         int userInputInt = scanner.nextInt();
         userInputInt = Math.abs(userInputInt);
         return userInputInt;
