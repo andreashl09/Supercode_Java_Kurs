@@ -15,6 +15,7 @@ public class SchereSteinPapierDuell {
     public static int counterMoves = 0;
     public static int bonusPointUser = 0;
     public static int bonusPointComputer = 0;
+    public static int drawnPoint = 0;
 
     public static void main(String[] args) {
         ClearConsole();
@@ -35,8 +36,24 @@ public class SchereSteinPapierDuell {
             if (userInput == 3) {
                 if (counterMoves > 0) {
                     System.out.println(scoreBoard());
+
+                    if (userScore > computerScore) {
+                        System.out.println("Du hast das ganze Spiel gewonnen! Herzlichen Gückwunsch!");
+                    } else if (userScore < computerScore) {
+                        System.out.println(
+                                "Der Computer hat das Spiel gewonnen! Du solltest vielleicht kein Lotto spielen!");
+                    } else {
+                        System.out.println("Das Spiel ist Unentschieden! Willst du es wirklich das so stehen lassen?");
+                        System.out.println("0 = Nein, 1 = Ja");
+                        userInput = userInput(scanner);
+
+                        if (userInput == 0) {
+                            continue;
+                        }
+                    }
+
                 }
-                System.out.println("Das Programm wird beendet!");
+                System.out.println("Das Spiel wurde beendet!");
                 break;
             }
 
@@ -45,8 +62,9 @@ public class SchereSteinPapierDuell {
             System.out.println("Wahl des Computers: " + stonePaperScissorSelect(computerInt));
             countScores((determineTheStatus(userInput, computerInt)));
             checkForBonusPoint();
-            System.out.println(scoreBoard());
             counterMoves++;
+            System.out.println(scoreBoard());
+
         }
 
         scanner.close();
@@ -99,6 +117,9 @@ public class SchereSteinPapierDuell {
             return;
         }
         System.out.println("Unentschieden!\n");
+        drawnPoint++;
+        bonusPointUser = 0;
+        bonusPointComputer = 0;
     }
 
     public static void checkForBonusPoint() {
@@ -111,11 +132,14 @@ public class SchereSteinPapierDuell {
             System.out.println("Gewinnersträhne: Dreimal in Folge gewonnen! Du erhälst einen Bonuspunkt!");
             System.out.print("\n");
             userScore++;
+            return;
         } else if (bonusPointComputer == 3) {
             System.out.println("Leider bekommt der Computer einen Bonuspunkt!");
             System.out.print("\n");
             computerScore++;
+            return;
         }
+
     }
 
     public static String cheeringSlogan() {
@@ -141,7 +165,8 @@ public class SchereSteinPapierDuell {
 
     public static String scoreBoard() {
         return "Aktueller Punktestand - User: " + userScore
-                + " Computer: " + computerScore + " Spiele: " + counterMoves;
+                + " Computer: " + computerScore + " Spiele: " + counterMoves + " davon waren " + drawnPoint
+                + " unentschieden";
     }
 
 }
