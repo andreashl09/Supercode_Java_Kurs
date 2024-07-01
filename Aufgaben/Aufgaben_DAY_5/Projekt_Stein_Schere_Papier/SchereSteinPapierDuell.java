@@ -155,7 +155,8 @@ public class SchereSteinPapierDuell {
                 "Du bist unser Champion!",
                 "Zeig ihnen, wie es gemacht wird!"
         };
-        return cheeringStrings[(int) (Math.random() * 10)].toUpperCase();
+        return "Du schon " + bonusPointUser + " mal in Folge gewonnen!\n"
+                + cheeringStrings[(int) (Math.random() * 10)].toUpperCase();
     }
 
     public static void ClearConsole() {
