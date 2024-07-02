@@ -1,4 +1,12 @@
 public class SubString {
+    // # ✅ Aufgabenstellung
+
+    // In dieser Aufgabe sollst du die Methode substring aus der
+    // Java-Standardbibliothek selbst implementieren:
+    // die substring-Methode extrahiert einen Teilstring aus einem gegebenen String
+    // die Methode gibt den Teilstring von der Position start (inklusive) bis end
+    // (exklusive) zurück
+    // wenn start oder end ungültige Werte haben, soll die Methode null zurückgeben
 
     public static void main(String[] args) {
 
