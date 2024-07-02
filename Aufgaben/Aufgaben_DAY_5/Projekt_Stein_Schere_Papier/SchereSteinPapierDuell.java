@@ -33,7 +33,7 @@ public class SchereSteinPapierDuell {
                 continue;
             }
 
-            if (userInput == 3) {
+            if (userInput == BEENDEN) {
                 if (counterMoves > 0) {
                     System.out.println(scoreBoard());
 
@@ -124,6 +124,8 @@ public class SchereSteinPapierDuell {
 
     public static void checkForBonusPoint() {
         if (bonusPointUser < 3 && bonusPointUser > 0) {
+            String inFolge = bonusPointUser > 1 ? " in Folge" : "";
+            System.out.println("Du hast schon " + bonusPointUser + " mal" + inFolge + " gewonnen!\n");
             System.out.println(cheeringSlogan() + "\n");
             return;
         }
@@ -155,8 +157,7 @@ public class SchereSteinPapierDuell {
                 "Du bist unser Champion!",
                 "Zeig ihnen, wie es gemacht wird!"
         };
-        return "Du schon " + bonusPointUser + " mal in Folge gewonnen!\n"
-                + cheeringStrings[(int) (Math.random() * 10)].toUpperCase();
+        return cheeringStrings[(int) (Math.random() * 10)].toUpperCase();
     }
 
     public static void ClearConsole() {
