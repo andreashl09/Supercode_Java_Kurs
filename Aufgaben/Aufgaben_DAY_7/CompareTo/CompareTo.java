@@ -9,24 +9,14 @@ public class CompareTo {
     }
 
     public static int compareTo(String s1, String s2) {
-        int lengthString1 = s1.length();
-        int lengthString2 = s2.length();              
-        int lengthCounter = Math.min(lengthString1, lengthString2);
-        
-        int charCounter = 0;
+        int minLength = Math.min(s1.length(), s2.length());
 
-        for (int i = 0; i < lengthCounter; i++) {
-            if (s1.charAt(i) != s2.charAt(i)) {
-                return s1.charAt(i) - s2.charAt(i);
-            } else {
-                charCounter++;
-            }
+        for (int i = 0; i < minLength; i++) {
+            int string1Char = s1.charAt(i);
+            int string2Char = s2.charAt(i);
+            if (string1Char != string2Char)
+                return string1Char - string2Char;
         }
-
-        if (charCounter == lengthCounter) {
-            return lengthString1 - lengthString2;
-        }
-
-        return 0;
+        return s1.length() - s2.length();
     }
 }
