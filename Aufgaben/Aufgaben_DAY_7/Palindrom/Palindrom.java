@@ -18,8 +18,20 @@ public class Palindrom {
 
     }
 
+    public static String removeSpaces(String input) {
+        String inputWithoutSpaces = "";
+
+        for (int i = 0; i < input.length(); i++) {
+            final char SPACE = ' ';
+            if (input.charAt(i) != SPACE) {
+                inputWithoutSpaces += input.charAt(i);
+            }
+        }
+        return inputWithoutSpaces;
+    }
+
     public static boolean isStringPalindrom(String inputText) {
-        inputText = inputText.toLowerCase();
+        inputText = removeSpaces(inputText.toLowerCase());
         String reverseText = "";
 
         for (int i = inputText.length() - 1; i >= 0; i--) {

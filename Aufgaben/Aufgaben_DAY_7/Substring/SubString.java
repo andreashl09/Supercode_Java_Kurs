@@ -19,7 +19,7 @@ public class SubString {
         int lengthStringInt = s.length();
 
         if (start < 0 || end > lengthStringInt || start > end)
-            return "null";
+            return null;
 
         String subString = "";
         for (int i = start; i < end; i++) {
