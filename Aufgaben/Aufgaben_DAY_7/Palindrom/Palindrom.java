@@ -19,12 +19,13 @@ public class Palindrom {
     }
 
     public static boolean isStringPalindrom(String inputText) {
+        inputText = inputText.toLowerCase();
         String reverseText = "";
 
         for (int i = inputText.length() - 1; i >= 0; i--) {
             char character = inputText.charAt(i);
             reverseText += character;
         }
-        return inputText.toLowerCase().equals(reverseText.toLowerCase());
+        return inputText.equals(reverseText);
     }
 }
