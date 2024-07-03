@@ -35,7 +35,6 @@ public class Split_Methode {
         int numberOfElements = numberOfElements(inputString, searchString);
         String[] arrayStr = new String[numberOfElements];
         String restOfString = inputString;
-        ;
 
         for (int element = 0; element < numberOfElements; element++) {
             int endIndex = restOfString.indexOf(searchString);
