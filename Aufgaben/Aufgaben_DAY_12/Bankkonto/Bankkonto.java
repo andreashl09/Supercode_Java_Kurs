@@ -24,11 +24,15 @@ public class Bankkonto {
         return this.kontostand;
     }
 
+    public String getKontoInhaber() {
+        return kontoinhaber;
+    }
+
     public void einzahlen(double betrag) {
         if (betrag < 0)
             System.out.println("Du kannst keinen Minusbetrag einzahlen");
         kontostand += betrag;
-        System.out.println(kontostandInfo());
+        System.out.println(getKontostandInfo());
     }
 
     public boolean abheben(double betrag) {
@@ -43,16 +47,16 @@ public class Bankkonto {
             System.out.println("Du kannst dein Kontolimit nicht überziehen");
         else
             kontostand -= betrag;
-        System.out.println(kontostandInfo());
+        System.out.println(getKontostandInfo());
         return true;
     }
 
-    public String kontostandInfo() {
+    public String getKontostandInfo() {
         return "Kontostand: " + kontostand;
     }
 
     public String kontoInformationen() {
-        return "Kontoinhaber: " + kontoinhaber + " Kontonummer: " + kontonummer + " " + kontostandInfo();
+        return "Kontoinhaber: " + kontoinhaber + " Kontonummer: " + kontonummer + " " + getKontostandInfo();
     }
 
     public void gibKontoInformationen() {
@@ -77,11 +81,13 @@ public class Bankkonto {
     public void writeTransaktion(Bankkonto empfaenger, double betrag) {
         LocalDateTime myDateObj = LocalDateTime.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String formattedDate = myDateObj.format(myFormatObj);
         transaktioStrings
-                .add(myFormatObj + " -" + betrag + " an " + empfaenger + " überwiesen. Neuer Kontostand:"
+                .add(formattedDate + " -" + betrag + " an " + empfaenger.getKontoInhaber()
+                        + " überwiesen. Kontostand:"
                         + this.kontostand);
         empfaenger.transaktioStrings
-                .add(myFormatObj + " + " + betrag + " von " + this + "erhalten. Neuer Kontostand:"
+                .add(formattedDate + " +" + betrag + " von " + this.getKontoInhaber() + " erhalten. Kontostand:"
                         + empfaenger.kontostand);
     }
 

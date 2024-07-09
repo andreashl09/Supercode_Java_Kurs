@@ -46,5 +46,6 @@ public class Bank {
         }
 
         konto1.printKontoauszug();
+        konto10.printKontoauszug();
     }
 }
