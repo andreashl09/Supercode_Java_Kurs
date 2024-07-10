@@ -32,7 +32,6 @@ public class Bankkonto {
         if (betrag < 0)
             System.out.println("Du kannst keinen Minusbetrag einzahlen");
         kontostand += betrag;
-        System.out.println(getKontostandInfo());
     }
 
     public boolean abheben(double betrag) {
@@ -47,7 +46,6 @@ public class Bankkonto {
             System.out.println("Du kannst dein Kontolimit nicht überziehen");
         else
             kontostand -= betrag;
-        System.out.println(getKontostandInfo());
         return true;
     }
 

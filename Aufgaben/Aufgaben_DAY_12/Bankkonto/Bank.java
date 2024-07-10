@@ -30,9 +30,9 @@ public class Bank {
         kontenList.add(konto9);
         kontenList.add(konto10);
 
-        for (Bankkonto bankkonto : kontenList) {
-            bankkonto.gibKontoInformationen();
-        }
+        // for (Bankkonto bankkonto : kontenList) {
+        // bankkonto.gibKontoInformationen();
+        // }
 
         konto1.einzahlen(200);
         konto1.ueberweisen(konto10, 100);
@@ -41,11 +41,13 @@ public class Bank {
 
         konto1.ueberweisen(konto10, 1000);
 
-        for (Bankkonto bankkonto : kontenList) {
-            bankkonto.gibKontoInformationen();
-        }
-
+        // for (Bankkonto bankkonto : kontenList) {
+        // bankkonto.gibKontoInformationen();
+        // }
+        System.out.println("Kontoauszug von: " + konto1.getKontoInhaber());
         konto1.printKontoauszug();
+        System.out.println("");
+        System.out.println("Kontoauszug von: " + konto10.getKontoInhaber());
         konto10.printKontoauszug();
     }
 }
