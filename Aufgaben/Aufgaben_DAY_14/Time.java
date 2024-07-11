@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 /**
  * Time
@@ -42,5 +43,9 @@ public class Time {
         DateTimeFormatter formatOnlyDay = DateTimeFormatter.ofPattern("E"); // EEEE gibt den vollständigen Wochentag
                                                                             // aus E nur die Abkürzung des Tags zb. Di.
         System.out.println(randomDate.format(formatOnlyDay));
+        
+
+        ArrayList testlist = new ArrayList<>();
+        
     }
 }
