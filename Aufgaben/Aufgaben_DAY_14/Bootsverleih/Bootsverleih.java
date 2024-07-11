@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Bootsverleih {
     private ArrayList<Boot> boote;
@@ -22,15 +21,12 @@ public class Bootsverleih {
     }
 
     public Person topCustomer() {
-        String[] topCustomers = new String[kunden.size()];
         int[][] topList = new int[kunden.size()][2];
         int index = 0;
-
         for (Person searchKunde : kunden) {
             int counter = 0;
             for (Boot boot : boote) {
                 ArrayList<Reservation> reservierungen = boot.getReservations();
-
                 for (Reservation reservierung : reservierungen) {
                     if (reservierung.getPerson() == searchKunde)
                         counter++;
@@ -39,26 +35,75 @@ public class Bootsverleih {
             // fülle toplist
             topList[index][0] = index;
             topList[index][1] = counter;
-
             // sortiere topList absteigend
-            for (int i = 0; i < topList.length - 1; i++) {
-                if (topList[i][1] <= topList[i + 1][1]) {
-
-                    int noteFirstInt = topList[i + 1][0];
-                    topList[i + 1][0] = topList[i][0];
-                    topList[i][0] = noteFirstInt;
-
-                    int noteSecondInt = topList[i + 1][1];
-                    topList[i + 1][1] = topList[i][1];
-                    topList[i][1] = noteSecondInt;
-                }
-            }
             counter = 0;
             index++;
         }
-        System.out.println("Der Topcustomer: " + kunden.get(topList[1][0]).getName() + " mit " + topList[1][1]
+        sortArray(topList);
+        System.out.println("Der Topcustomer: " + kunden.get(topList[0][0]).getName() + " mit " + topList[0][1]
                 + " Reservierungen");
+        return kunden.get(topList[0][0]);
+    }
 
-        return null;
+    public Boot topBoat() {
+        int[][] topList = getIndex();
+        // sortiere topList absteigend
+        sortArray(topList);
+        System.out.println(
+                "Der TopBoot: " + boote.get(topList[0][0]).getId() + " mit " + topList[0][1] + " Reservierungen");
+        return boote.get(topList[0][0]);
+    }
+
+    public Boot worstBoat() {
+        int[][] topList = getIndex();
+        // sortiere topList absteigend
+        sortArrayReverse(topList);
+        System.out.println(
+                "Das Boot: " + boote.get(topList[0][0]).getId() + " ist mit " + topList[0][1]
+                        + " Reservierungen das Schlechteste");
+        return boote.get(topList[0][0]);
+    }
+
+    private int[][] getIndex() {
+        int[][] topList = new int[boote.size()][2];
+        int index = 0;
+
+        for (Boot boot : boote) {
+            ArrayList<Reservation> reservierungen = boot.getReservations();
+            topList[index][1] = reservierungen.size();
+            topList[index][0] = index;
+            index++;
+        }
+        return topList;
+    }
+
+    private void sortArray(int[][] topList) {
+        for (int i = 0; i < topList.length - 1; i++) {
+            if (topList[i][1] <= topList[i + 1][1]) {
+
+                int noteFirstInt = topList[i + 1][0];
+                topList[i + 1][0] = topList[i][0];
+                topList[i][0] = noteFirstInt;
+
+                int noteSecondInt = topList[i + 1][1];
+                topList[i + 1][1] = topList[i][1];
+                topList[i][1] = noteSecondInt;
+            }
+        }
+    }
+
+    private void sortArrayReverse(int[][] topList) {
+        for (int i = 0; i < topList.length - 1; i++) {
+            if (topList[i][1] >= topList[i + 1][1]) {
+
+                int noteFirstInt = topList[i + 1][0];
+                topList[i + 1][0] = topList[i][0];
+                topList[i][0] = noteFirstInt;
+
+                int noteSecondInt = topList[i + 1][1];
+                topList[i + 1][1] = topList[i][1];
+                topList[i][1] = noteSecondInt;
+            }
+        }
     }
 }

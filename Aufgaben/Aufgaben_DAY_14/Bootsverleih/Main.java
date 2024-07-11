@@ -58,6 +58,8 @@ public class Main {
         boot3.printReservations();
 
         rentABoat.topCustomer();
+        rentABoat.topBoat();
+        rentABoat.worstBoat();
 
     }
 }

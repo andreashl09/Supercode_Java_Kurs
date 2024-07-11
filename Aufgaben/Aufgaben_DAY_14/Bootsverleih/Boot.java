@@ -13,8 +13,11 @@ public class Boot {
     private boolean isLicenceRequired;
     private double pricePerHour;
     private ArrayList<Reservation> reservations;
+    private static int idCounter = 0;
+    private int id;
 
     public Boot(String type, int personCount, boolean isLicenceRequired, double pricePerHour) {
+        this.id = idCounter++;
         this.setType(type);
         this.setPersonCount(personCount);
         this.setIsLicenceRequired(isLicenceRequired);
@@ -38,8 +41,12 @@ public class Boot {
         this.pricePerHour = pricePerHour;
     }
 
+
     public String getType() {
         return type;
+    }
+    public int getId() {
+        return this.id;
     }
     public int getPersonCount() {
         return personCount;
