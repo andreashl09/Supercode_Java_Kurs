@@ -44,8 +44,5 @@ public class Time {
                                                                             // aus E nur die Abkürzung des Tags zb. Di.
         System.out.println(randomDate.format(formatOnlyDay));
         
-
-        ArrayList testlist = new ArrayList<>();
-        
     }
 }

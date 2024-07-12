@@ -6,17 +6,19 @@ public class Main {
     public static void main(String[] args) {
         Bootsverleih rentABoat = new Bootsverleih();
 
-        Boot boot1 = new Boot("Segelboot", 4, false, 20);
-        Boot boot2 = new Boot("Motorboot", 4, false, 36);
-        Boot boot3 = new Boot("Motorboot", 2, true, 28);
-        Boot boot4 = new Boot("Segelboot", 16, true, 92);
-        Boot boot5 = new Boot("Segelboot", 2, false, 16);
+        Boot boot1 = new Boot("Jeanneau", "Segelboot", 4, false, 20);
+        Boot boot2 = new Boot("Bayliner", "Motorboot", 4, false, 36);
+        Boot boot3 = new Boot("Cobalt Boats", "Motorboot", 2, true, 28);
+        Boot boot4 = new Boot("Beneteau", "Segelboot", 16, true, 92);
+        Boot boot5 = new Boot("Najad Yachts", "Segelboot", 2, false, 16);
+        Boot boot6 = new Boot("Searay", "Motorboot", 4, true, 140);
 
         rentABoat.addBoat(boot1);
         rentABoat.addBoat(boot2);
         rentABoat.addBoat(boot3);
         rentABoat.addBoat(boot4);
         rentABoat.addBoat(boot5);
+        rentABoat.addBoat(boot6);
 
         Person andreas = new Person("Andreas", true);
         Person anton = new Person("Anton", true);
@@ -60,6 +62,8 @@ public class Main {
         rentABoat.topCustomer();
         rentABoat.topBoat();
         rentABoat.worstBoat();
+
+        boot2.printBookings();
 
     }
 }

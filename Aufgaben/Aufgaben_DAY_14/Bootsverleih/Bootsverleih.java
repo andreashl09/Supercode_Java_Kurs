@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Bootsverleih {
     private ArrayList<Boot> boote;
     private ArrayList<Person> kunden = new ArrayList<>();
+
     // private double umsatz;
 
     // the customer with the most reservation (count)
@@ -46,7 +47,7 @@ public class Bootsverleih {
     }
 
     public Boot topBoat() {
-        int[][] topList = getIndex();
+        int[][] topList = getList();
         // sortiere topList absteigend
         sortArray(topList);
         System.out.println(
@@ -55,8 +56,8 @@ public class Bootsverleih {
     }
 
     public Boot worstBoat() {
-        int[][] topList = getIndex();
-        // sortiere topList absteigend
+        int[][] topList = getList();
+        // sortiere topList aufsteigend
         sortArrayReverse(topList);
         System.out.println(
                 "Das Boot: " + boote.get(topList[0][0]).getId() + " ist mit " + topList[0][1]
@@ -64,7 +65,7 @@ public class Bootsverleih {
         return boote.get(topList[0][0]);
     }
 
-    private int[][] getIndex() {
+    private int[][] getList() {
         int[][] topList = new int[boote.size()][2];
         int index = 0;
 
@@ -81,13 +82,13 @@ public class Bootsverleih {
         for (int i = 0; i < topList.length - 1; i++) {
             if (topList[i][1] <= topList[i + 1][1]) {
 
-                int noteFirstInt = topList[i + 1][0];
+                int memoryInt = topList[i + 1][0];
                 topList[i + 1][0] = topList[i][0];
-                topList[i][0] = noteFirstInt;
+                topList[i][0] = memoryInt;
 
-                int noteSecondInt = topList[i + 1][1];
+                memoryInt = topList[i + 1][1];
                 topList[i + 1][1] = topList[i][1];
-                topList[i][1] = noteSecondInt;
+                topList[i][1] = memoryInt;
             }
         }
     }
@@ -96,13 +97,13 @@ public class Bootsverleih {
         for (int i = 0; i < topList.length - 1; i++) {
             if (topList[i][1] >= topList[i + 1][1]) {
 
-                int noteFirstInt = topList[i + 1][0];
+                int memoryInt = topList[i + 1][0];
                 topList[i + 1][0] = topList[i][0];
-                topList[i][0] = noteFirstInt;
+                topList[i][0] = memoryInt;
 
-                int noteSecondInt = topList[i + 1][1];
+                memoryInt = topList[i + 1][1];
                 topList[i + 1][1] = topList[i][1];
-                topList[i][1] = noteSecondInt;
+                topList[i][1] = memoryInt;
             }
         }
     }
