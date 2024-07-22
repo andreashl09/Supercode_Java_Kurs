@@ -8,26 +8,38 @@ public class Hangman {
     static final int VERSUCHE = 6;
     static int versuch = VERSUCHE;
     static int charCounter = 0;
+    static final String ALLEGMEIN = "allgemeines Wort";
+    static final String JAVA = "Wort aus der Welt von Java";
+    static String kategorie = "";
+    static final String UNTERSTRICHANFANG = "\u001B[4m";
+    static final String UNTERSTRICHENDE = "\u001B[0m";
 
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
 
         clearConsole();
-        System.out.println("Willkommen zu Hangman!");
-        System.out.println("Wähle deine Kategorie: 1 = allgemeines Wort, 2 = Wort aus der Welt von Java");
+        System.out.println(UNTERSTRICHANFANG + "Willkommen zu Hangman!" + UNTERSTRICHENDE + "\n");
+        System.out.println("Wähle deine Kategorie: 1 = " + ALLEGMEIN + ", 2 = " + JAVA);
         System.out.print("Deine Wahl: ");
-        neuesSpiel(scan.nextInt());
+        spielStart(scan.nextInt());
         while (spielLaeuft()) {
             spielfeld();
             char userEingabe = getUserEingabe(scan);
             spielMechanik(userEingabe);
-            clearConsole();
+
         }
 
     }
 
+    public static void spielStart(int auswahl) {
+        kategorie = (auswahl == 2) ? JAVA : ALLEGMEIN;
+        neuesSpiel(auswahl);
+        clearConsole();
+    }
+
     private static void spielfeld() {
+        System.out.println("Gesucht wird ein " + kategorie + "\n");
         System.out.println(zeigeWort(ergebnisWort));
         System.out.println("Verbleibende Versuche: " + versuch);
         System.out.println("Geratene Buchstaben:" + gerateneBuchstaben);
@@ -52,7 +64,9 @@ public class Hangman {
         }
 
         if (versuch == 0) {
-            System.out.println("Du hast leider verloren! Das gesuchte Wort war: " + new String(rateWortCharArray));
+            System.out.println(
+                    "Du hast leider verloren! Das gesuchte Wort war: "
+                            + new String(rateWortCharArray));
             return false;
         }
 
@@ -65,7 +79,6 @@ public class Hangman {
 
     public static void spielMechanik(char userEingabe) {
         istBuchstabe(userEingabe);
-
         if (istBuchstabe(userEingabe)) {
             boolean treffer = false;
             for (int i = 0; i < rateWortCharArray.length; i++) {
@@ -79,8 +92,9 @@ public class Hangman {
             if (!treffer) {
                 versuch--;
             }
+            gerateneBuchstaben.add(userEingabe);
         }
-        gerateneBuchstaben.add(userEingabe);
+        clearConsole();
     }
 
     public static String zeigeWort(char[] array) {
