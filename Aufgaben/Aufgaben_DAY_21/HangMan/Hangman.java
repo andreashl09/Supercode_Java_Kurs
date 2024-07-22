@@ -11,15 +11,15 @@ public class Hangman {
     static final String ALLEGMEIN = "allgemeines Wort";
     static final String JAVA = "Wort aus der Welt von Java";
     static String kategorie = "";
-    static final String UNTERSTRICHANFANG = "\u001B[4m";
-    static final String UNTERSTRICHENDE = "\u001B[0m";
+    static final String UNTERSTRICH_ANFANG = "\u001B[4m";
+    static final String UNTERSTRICH_ENDE = "\u001B[0m";
 
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
 
         clearConsole();
-        System.out.println(UNTERSTRICHANFANG + "Willkommen zu Hangman!" + UNTERSTRICHENDE + "\n");
+        System.out.println(UNTERSTRICH_ANFANG + "Willkommen zu Hangman!" + UNTERSTRICH_ENDE + "\n");
         System.out.println("Wähle deine Kategorie: 1 = " + ALLEGMEIN + ", 2 = " + JAVA);
         System.out.print("Deine Wahl: ");
         spielStart(scan.nextInt());
@@ -29,7 +29,7 @@ public class Hangman {
             spielMechanik(userEingabe);
 
         }
-
+        scan.close();
     }
 
     public static void spielStart(int auswahl) {
@@ -39,7 +39,7 @@ public class Hangman {
     }
 
     private static void spielfeld() {
-        System.out.println("Gesucht wird ein " + kategorie + "\n");
+        System.out.println(UNTERSTRICH_ANFANG + "Gesucht wird ein " + kategorie + UNTERSTRICH_ENDE + "\n");
         System.out.println(zeigeWort(ergebnisWort));
         System.out.println("Verbleibende Versuche: " + versuch);
         System.out.println("Geratene Buchstaben:" + gerateneBuchstaben);
