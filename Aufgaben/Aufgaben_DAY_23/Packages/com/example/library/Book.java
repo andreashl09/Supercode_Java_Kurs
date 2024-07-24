@@ -1,6 +1,6 @@
 package com.example.library;
 
-public class Book {
+public abstract class Book {
     private String title;
     protected String author;
     String isbn;
@@ -40,7 +40,7 @@ public class Book {
     }
     @Override
     public String toString() {
-        return "Book [title=" + title + ", author=" + author + ", isbn=" + isbn + ", year=" + year + "]";
+        return "[title=" + title + ", author=" + author + ", isbn=" + isbn + ", year=" + year + "]";
     }
 
 
