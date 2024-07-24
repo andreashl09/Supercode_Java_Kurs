@@ -1,6 +1,12 @@
 package com.example.library;
 
+import java.lang.*;
+
 public class EBook extends Book implements Readable {
+
+    public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+    public static final String ANSI_RESET = "\u001B[0m";
+
     private double fileSize;
 
     public EBook(String title, String author, String isbn, int year, double fileSize) {
@@ -16,8 +22,19 @@ public class EBook extends Book implements Readable {
         this.fileSize = fileSize;
     }
 
-    public void download() {
+    public void download(){
+        System.out.println("EBook wird runtergeladen!");
+        for (int i = 0; i <= 20; i++) {
+            System.out.print(ANSI_WHITE_BACKGROUND + " " + ANSI_RESET);
+            busyWait(100);
+        }
+    }
 
+    private void busyWait(int milliseconds){
+        long start = System.currentTimeMillis();
+        while (System.currentTimeMillis() - start <milliseconds){
+            // leere schleife die aktiv wartet
+        }
     }
 
     @Override
