@@ -28,8 +28,10 @@ public class MediaSuperMarkt {
         for (Geraet g : inventarList) {
             if (g instanceof IBluetoothfaehig)
                 ((IBluetoothfaehig) g).verbindeMitBluetooth();
-            
-            if(g instanceof IInternetfaehig) ((IInternetfaehig)g).verbindeMitInternet();
+
+            if (g instanceof IInternetfaehig)
+                ((IInternetfaehig) g).verbindeMitInternet();
+
         }
     }
 }
