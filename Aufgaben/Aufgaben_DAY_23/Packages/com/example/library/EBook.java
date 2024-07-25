@@ -22,17 +22,19 @@ public class EBook extends Book implements Readable {
         this.fileSize = fileSize;
     }
 
-    public void download(){
-        System.out.println("EBook wird runtergeladen!");
+    public void download() {
+        System.out.println("\nEBook: " + " | " + this.getTitle() + " | " + " wird runtergeladen!");
         for (int i = 0; i <= 20; i++) {
             System.out.print(ANSI_WHITE_BACKGROUND + " " + ANSI_RESET);
             busyWait(100);
+
         }
+        System.out.println(" " + fileSize + "MB geladen.");
     }
 
-    private void busyWait(int milliseconds){
+    private void busyWait(int milliseconds) {
         long start = System.currentTimeMillis();
-        while (System.currentTimeMillis() - start <milliseconds){
+        while (System.currentTimeMillis() - start < milliseconds) {
             // leere schleife die aktiv wartet
         }
     }
